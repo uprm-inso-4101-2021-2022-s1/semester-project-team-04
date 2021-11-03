@@ -1,4 +1,4 @@
-from config.dbconfig import pg_config
+from carHub.backend.config.dbconfig import pg_config
 import psycopg2
 import urllib.parse as urlparse
 
@@ -15,7 +15,7 @@ class UsersDAO:
 
     def getAllUsers(self):
         cursor = self.conn.cursor()
-        query = "select * from users natural inner join address;"
+        query = "select * from users natural inner join address natural inner join phone;"
         cursor.execute(query)
         result = []
         for row in cursor:
@@ -24,7 +24,7 @@ class UsersDAO:
 
     def getUserById(self, user_id):
         cursor = self.conn.cursor()
-        query = "select * from users natural inner join address where user_id = %s;"
+        query = "select * from users natural inner join address natural inner join phone where user_id = %s;"
         cursor.execute(query, (user_id,))
         result = cursor.fetchone()
         return result

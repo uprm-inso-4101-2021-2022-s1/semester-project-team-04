@@ -2,7 +2,7 @@ from carHub.backend.config.dbconfig import pg_config
 import psycopg2
 
 
-class AddressDAO:
+class PhoneDAO:
     def __init__(self):
         connection_url = "dbname=%s user=%s password=%s host=%s port=%s" % (pg_config['dbname'],
                                                                             pg_config['user'],
@@ -12,10 +12,10 @@ class AddressDAO:
 
         self.conn = psycopg2._connect(connection_url)
 
-    def insert(self, address_country, address_city, address_street, address_zipcode, user_id):
+    def insert(self, phone_number, user_id):
         cursor = self.conn.cursor()
-        query = "insert into address(address_country, address_city, address_street, address_zipcode, user_id) values (%s, %s, %s, %s, %s) returning address_id;"
-        cursor.execute(query, (address_country, address_city, address_street, address_zipcode, user_id,))
-        address_id = cursor.fetchone()[0]
+        query = "insert into phone(phone_number, user_id) values (%s, %s) returning phone_id;"
+        cursor.execute(query, (phone_number, user_id,))
+        phone_id = cursor.fetchone()[0]
         self.conn.commit()
-        return address_id
+        return phone_id
