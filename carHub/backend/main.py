@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from carHub.backend.handler.users import UserHandler
+from handler.users import UserHandler
 
 app = Flask(__name__)
 # apply CORS
