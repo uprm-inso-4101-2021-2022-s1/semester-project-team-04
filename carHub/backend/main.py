@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from handler.users import UserHandler
+
+from carHub.backend.handler.appointments import AppointmentsHandler
+from carHub.backend.handler.users import UserHandler
 
 app = Flask(__name__)
 # apply CORS
@@ -22,12 +24,24 @@ def handleUsers():
 def handleUsersbyId(user_id):
     if request.method == 'GET':
         return UserHandler().getUserById(user_id)
-    #elif request.method == 'PUT':
-     #   return BaseParts().updatePart(request.json)
-    #elif request.method == 'DELETE':
-        #return BaseParts().deletePart(pid)
+    # elif request.method == 'PUT':
+    #   return BaseParts().updatePart(request.json)
+    # elif request.method == 'DELETE':
+    # return BaseParts().deletePart(pid)
     else:
         return jsonify("Method Not Allowed"), 405
+
+
+@app.route('/carhub/appointments', methods=['GET', 'POST'])
+def handleAppointments():
+    if request.method == 'POST':
+        return AppointmentsHandler().insertAppointmentJson(request.json)
+    else:
+        if not request.args:
+            return AppointmentsHandler().getAllAppointments()
+
+        else:
+            return AppointmentsHandler().getUserAppointmentByNames(request.args)
 
 
 if __name__ == '__main__':
