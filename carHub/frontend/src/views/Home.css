@@ -40,18 +40,6 @@
   margin-top: 75vh;
 }
 
-.Welcome {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  width: 100%;
-  margin-top: 16vh;
-  font-family: 'Josefin Sans', cursive;
-  font-size: 80px;
-  color: #f1fffa;
-}
-
 .wrapper{
   margin-left: 2rem;
   margin-top: 14rem;

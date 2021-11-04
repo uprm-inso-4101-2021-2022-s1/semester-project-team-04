@@ -22,7 +22,10 @@ function Copyright(props) {
       align='center'
       {...props}>
       {'Copyright © '}
-      <Link color='inherit' href='http://localhost:3000/'>
+      <Link
+        underline='hover'
+        color='rgb(10, 96, 235)'
+        href='http://localhost:3000/'>
         CarHub
       </Link>{' '}
       {new Date().getFullYear()}
@@ -33,7 +36,7 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignInSide() {
+export default function RegisterUser() {
   const handleSubmit = event => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -73,11 +76,11 @@ export default function SignInSide() {
               flexDirection: 'column',
               alignItems: 'center',
             }}>
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <Avatar sx={{ m: 5, bgcolor: 'secondary.main' }}>
               <LockOutlinedIcon />
             </Avatar>
             <Typography component='h1' variant='h5'>
-              Sign in
+              Register Now
             </Typography>
             <Box
               component='form'
@@ -89,7 +92,7 @@ export default function SignInSide() {
                 required
                 fullWidth
                 id='email'
-                label='Email Address'
+                label='Enter a valid Email Address'
                 name='email'
                 autoComplete='email'
                 autoFocus
@@ -99,38 +102,24 @@ export default function SignInSide() {
                 required
                 fullWidth
                 name='password'
-                label='Password'
+                label='Enter a Password'
                 type='password'
                 id='password'
                 autoComplete='current-password'
               />
               <FormControlLabel
                 control={<Checkbox value='remember' color='primary' />}
-                label='Remember me'
+                label='I agree to the terms of service'
               />
               <Button
                 type='submit'
                 fullWidth
                 variant='contained'
-                sx={{ mt: 3, mb: 2 }}>
-                Sign In
+                sx={{ mt: 3, mb: 2 }}
+                onClick={() => history.push('/')}>
+                Register
               </Button>
-              <Grid container>
-                <Grid item xs>
-                  <Link underline='hover' href='#' variant='body2'>
-                    Forgot password?
-                  </Link>
-                  <Link
-                    underline='hover'
-                    href='#'
-                    variant='body2'
-                    style={{ marginLeft: '30%' }}
-                    onClick={() => history.push('/register')}>
-                    Create Account
-                  </Link>
-                  <Copyright sx={{ mt: 5 }} />
-                </Grid>
-              </Grid>
+              <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>
         </Grid>

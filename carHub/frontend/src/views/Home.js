@@ -3,16 +3,15 @@ import './Home.css';
 import history from '../history';
 import NavBut from '../components/NavButtons.js';
 import SearchBar from '../components/SearchBar';
-import backgroundImage from '../decoratives/textures/HomePageBackground.jpg';
-import { fadeInDown, fadeInRight, zoomIn } from '../../node_modules/react-animations';
-import Radium, { StyleRoot } from '../../node_modules/radium';
+import backgroundImage from '../img/HomePageBackground.jpg';
+import { fadeInDown, fadeInRight, zoomIn} from 'react-animations';
+import Radium, { StyleRoot } from 'radium';
 import Card from '../components/Card.js';
 
 class Home extends React.Component {
   render() {
     return (
       <div className='container'>
-
         {/*Home page background image*/}
         <BackgroundImage />
 
@@ -20,7 +19,11 @@ class Home extends React.Component {
         <StyleRoot>
           <div className='navBar' style={styles.fadeInRight}>
             {/*Home*/}
-            <NavBut text='Home' disabled={true} />
+            <NavBut
+              onClick={() => history.push('/')}
+              text='Home'
+              disabled={false}
+            />
 
             {/*About us*/}
             <NavBut
@@ -52,53 +55,76 @@ class Home extends React.Component {
           </div>
         </StyleRoot>
 
-        {/*Welcome to Carhub text*/}
-        <StyleRoot>
-          <div className='Welcome' style={styles.fadeInDown}>
-            Welcome to CarHub
-          </div>
-        </StyleRoot>
-
         <div className='wrapper'>
-          <Card img="https://source.unsplash.com/featured/?cars"
-          title='Penis Car' description='Car for your penis' price=
-          "You can't afford it" />
+          <Card
+            img='https://source.unsplash.com/featured/?cars'
+            title='Penis Car'
+            description='Car for your penis'
+            price="You can't afford it"
+          />
 
-          <Card img="https://source.unsplash.com/featured/?cars"
-          title='Penis Car' description='Car for your penis' price=
-          "20.00" />
+          <Card
+            img='https://source.unsplash.com/featured/?cars'
+            title='Penis Car'
+            description='Car for your penis'
+            price='20.00'
+          />
 
-          <Card img="https://source.unsplash.com/featured/?cars"
-          title='Penis Car' description='Car for your penis' price=
-          "500.00" />
+          <Card
+            img='https://source.unsplash.com/featured/?cars'
+            title='Penis Car'
+            description='Car for your penis'
+            price='500.00'
+          />
 
-          <Card img="https://source.unsplash.com/featured/?cars"
-          title='Penis Car' description='Car for your penis' price=
-          "1000.00" />
+          <Card
+            img='https://source.unsplash.com/featured/?cars'
+            title='Penis Car'
+            description='Car for your penis'
+            price='1000.00'
+          />
 
-          <Card img="https://source.unsplash.com/featured/?cars"
-          title='Penis Car' description='Car for your penis' price=
-          "50,000.00" />
+          <Card
+            img='https://source.unsplash.com/featured/?cars'
+            title='Penis Car'
+            description='Car for your penis'
+            price='50,000.00'
+          />
 
-          <Card img="https://source.unsplash.com/featured/?cars"
-          title='Penis Car' description='Car for your penis' price=
-          "You can't afford it" />
+          <Card
+            img='https://source.unsplash.com/featured/?cars'
+            title='Penis Car'
+            description='Car for your penis'
+            price="You can't afford it"
+          />
 
-          <Card img="https://source.unsplash.com/featured/?cars"
-          title='Penis Car' description='Car for your penis' price=
-          "20.00" />
+          <Card
+            img='https://source.unsplash.com/featured/?cars'
+            title='Penis Car'
+            description='Car for your penis'
+            price='20.00'
+          />
 
-          <Card img="https://source.unsplash.com/featured/?cars"
-          title='Penis Car' description='Car for your penis' price=
-          "500.00" />
+          <Card
+            img='https://source.unsplash.com/featured/?cars'
+            title='Penis Car'
+            description='Car for your penis'
+            price='500.00'
+          />
 
-          <Card img="https://source.unsplash.com/featured/?cars"
-          title='Penis Car' description='Car for your penis' price=
-          "1000.00" />
+          <Card
+            img='https://source.unsplash.com/featured/?cars'
+            title='Penis Car'
+            description='Car for your penis'
+            price='1000.00'
+          />
 
-          <Card img="https://source.unsplash.com/featured/?cars"
-          title='Penis Car' description='Car for your penis' price=
-          "50,000.00" />
+          <Card
+            img='https://source.unsplash.com/featured/?cars'
+            title='Penis Car'
+            description='Car for your penis'
+            price='50,000.00'
+          />
         </div>
       </div>
     );
@@ -106,7 +132,7 @@ class Home extends React.Component {
 }
 
 function BackgroundImage() {
-  return <img src={backgroundImage} className='BckImg' />;
+  return <img src={backgroundImage} className='BckImg' alt='car' />;
 }
 
 const styles = {

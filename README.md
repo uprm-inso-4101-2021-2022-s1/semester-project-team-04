@@ -38,7 +38,7 @@ $ npm install
 $ npm start
 ```
 
-**Step #6** - Stop frontend
+**Step #5** - Stop frontend
 
 Press Ctrl + C
 
@@ -73,24 +73,24 @@ $ pip install -r requirements.txt
 **Step #4** - setup `flask` command for our app
 
 ```bash
-$ export FLASK_APP=app.py
+$ export FLASK_APP=main.py
 $ export FLASK_ENV=development
 ```
 
 > Or for Windows-based systems
 
 ```powershell
-$ (Windows CMD) set FLASK_APP=app.py
+$ (Windows CMD) set FLASK_APP=main.py
 $ (Windows CMD) set FLASK_ENV=development
 $
-$ (Powershell) $env:FLASK_APP = ".\app.py"
+$ (Powershell) $env:FLASK_APP = ".\main.py"
 $ (Powershell) $env:FLASK_ENV = "development"
 ```
 
 **Step #5** - start backend at `localhost:5000`
 
 ```bash
-$ python app.py
+$ python main.py
 ```
 
 or

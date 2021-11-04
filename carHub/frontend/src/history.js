@@ -1,3 +1,3 @@
-import { createBrowserHistory as history} from '../node_modules/history';
+import { createBrowserHistory as history } from 'history';
 
 export default history();
