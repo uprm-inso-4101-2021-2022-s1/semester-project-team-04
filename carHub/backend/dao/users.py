@@ -37,3 +37,13 @@ class UsersDAO:
         user_id = cursor.fetchone()[0]
         self.conn.commit()
         return user_id
+
+    # method for testing connection between frontend an api
+    def insertForm(self, user_email, user_password):
+        cursor = self.conn.cursor()
+        query = "insert into users_test(user_email, user_password) " \
+                "values (%s, %s) returning user_id;"
+        cursor.execute(query, (user_email, user_password,))
+        user_id = cursor.fetchone()[0]
+        self.conn.commit()
+        return user_id

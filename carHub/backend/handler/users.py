@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from carHub.backend.dao.address import AddressDAO
 from carHub.backend.dao.users import UsersDAO
-from carHub.backend.dao.phone import PhoneDAO #added phone dao
+from carHub.backend.dao.phone import PhoneDAO  # added phone dao
 
 
 class UserHandler:
@@ -21,7 +21,7 @@ class UserHandler:
         result['address_city'] = row[8]
         result['address_street'] = row[9]
         result['address_zipcode'] = row[10]
-        #Added code for phone
+        # Added code for phone
         result['phone_id'] = row[11]
         result['phone_number'] = row[12]
 
@@ -45,7 +45,6 @@ class UserHandler:
         # Added code for phone
         result['phone_id'] = phone_id
         result['phone_number'] = phone_number
-
 
         return result
 
@@ -71,13 +70,13 @@ class UserHandler:
                     address_street and address_zipcode and phone_number:
                 udao = UsersDAO()
                 addao = AddressDAO()
-                #Phone
+                # Phone
                 pdao = PhoneDAO()
                 user_id = udao.insert(users_fname, users_lname,
                                       users_uname, generate_password_hash(users_passwd, method='sha256'), users_email)
                 address_id = addao.insert(address_country, address_city,
                                           address_street, address_zipcode, user_id)
-                phone_id = pdao.insert(phone_number, user_id)   #added
+                phone_id = pdao.insert(phone_number, user_id)  # added
 
                 result = self.build_user_attributes(user_id, users_fname,
                                                     users_lname,
@@ -85,8 +84,27 @@ class UserHandler:
                                                     users_passwd, users_email, address_id, address_country,
                                                     address_city, address_street,
                                                     address_zipcode,
-                                                    phone_id, phone_number,)
-                                                    #added phone
+                                                    phone_id, phone_number, )
+                # added phone
+                return jsonify(Users=result), 201
+            else:
+                return jsonify(Error="Unexpected attributes in post request"), 400
+    # method for testing connection between frontend an api
+    def insertUserForm(self, form):
+        print("form ", form)
+        if len(form) != 2:
+            return jsonify(Error="Malformed post request"), 400
+        else:
+            users_email = form['email']
+            users_passwd = form['password']
+
+            if users_passwd and users_email:
+
+                udao = UsersDAO()
+
+                user_id = udao.insertForm(users_email, generate_password_hash(users_passwd, method='sha256'))
+
+                result = {'users_email': users_email, 'users_password': users_passwd}
                 return jsonify(Users=result), 201
             else:
                 return jsonify(Error="Unexpected attributes in post request"), 400

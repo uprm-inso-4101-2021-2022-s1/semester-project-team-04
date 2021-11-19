@@ -13,6 +13,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import history from '../history';
+import {useState} from "react";
+import {useContext} from "react";
 
 function Copyright(props) {
   return (
@@ -37,6 +39,9 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function RegisterUser() {
+    //const{store, actions} = useContext(Context);
+    const[email, setEmail] = useState("");
+    const [password,setPassword] = useState("");
   const handleSubmit = event => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -45,8 +50,29 @@ export default function RegisterUser() {
       email: data.get('email'),
       password: data.get('password'),
     });
-  };
 
+   };
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    const handleClick = () => {
+        const opts = {
+        method: 'POST',
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({"email":email,
+  "password":password})
+    };
+    fetch('http://127.0.0.1:5000/register',opts)
+        .then(resp =>{
+            if(resp.status === 200) return resp.json();
+            else alert("There has been some error.");
+        })
+        .then()
+        .catch(error =>{
+            console.error("Fatal error",error);
+        })
+    };
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
   return (
     <ThemeProvider theme={theme}>
       <Grid container component='main' sx={{ height: '100vh' }}>
@@ -95,6 +121,7 @@ export default function RegisterUser() {
                 label='Enter a valid Email Address'
                 name='email'
                 autoComplete='email'
+                onChange={(e) => setEmail(e.target.value)}
                 autoFocus
               />
               <TextField
@@ -106,6 +133,7 @@ export default function RegisterUser() {
                 type='password'
                 id='password'
                 autoComplete='current-password'
+                onChange={(e) => setPassword(e.target.value)}
               />
               <FormControlLabel
                 control={<Checkbox value='remember' color='primary' />}
@@ -116,7 +144,8 @@ export default function RegisterUser() {
                 fullWidth
                 variant='contained'
                 sx={{ mt: 3, mb: 2 }}
-                onClick={() => history.push('/')}>
+                /////////////////////////////////////////
+                onClick={() => {history.push('/');handleClick()}}>
                 Register
               </Button>
               <Copyright sx={{ mt: 5 }} />
