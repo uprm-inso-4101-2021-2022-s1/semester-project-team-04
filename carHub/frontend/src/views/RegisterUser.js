@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import history from '../history';
 import {useState} from "react";
 import {useContext} from "react";
+import validator from 'validator'
 
 function Copyright(props) {
   return (
@@ -54,6 +55,16 @@ export default function RegisterUser() {
    };
     //////////////////////////////////////////////////////////////////////////////////////////////////
     const handleClick = () => {
+
+        if((email === '' && password === '') || (email === '' || password === '')) {
+            alert("Enter Email and Password.");
+            return history.push('/register');
+        }
+
+        if(!validator.isEmail(email)){
+             alert("Enter a valid Email.");
+             return history.push('/register');
+        }
         const opts = {
         method: 'POST',
         headers:{
@@ -144,7 +155,7 @@ export default function RegisterUser() {
               />
               <FormControlLabel
                 control={<Checkbox value='remember' color='primary' />}
-                label='I agree to the terms of service'
+                label='I agree to the terms of service.'
               />
               <Button
                 type='submit'

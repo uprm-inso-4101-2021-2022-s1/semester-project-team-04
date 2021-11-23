@@ -55,8 +55,6 @@ def handleAppointments():
             return AppointmentsHandler().getUserAppointmentByNames(request.args)
 
 
-
-
 # method for testing connection between frontend an api
 @app.route('/register', methods=['POST'])
 def signup_post():
@@ -78,6 +76,7 @@ def signup_post():
     # db.session.add(new_user)
     # db.session.commit()
     email = request.json.get("email", None)
+
     if UsersDAO().searchUserByEmail(email):
         return jsonify(Error="User's email already exist."), 404
     # password = request.json.get("password", None)
