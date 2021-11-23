@@ -47,3 +47,12 @@ class UsersDAO:
         user_id = cursor.fetchone()[0]
         self.conn.commit()
         return user_id
+
+    # method for testing connection between frontend an api
+    def searchUserByEmail(self, user_email):
+        cursor = self.conn.cursor()
+        query = "select user_email from users_test where user_email = %s;"
+        cursor.execute(query, (user_email,))
+        result = cursor.fetchone()
+        return result
+

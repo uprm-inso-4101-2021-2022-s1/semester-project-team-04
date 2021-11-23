@@ -65,9 +65,16 @@ export default function RegisterUser() {
     fetch('http://127.0.0.1:5000/register',opts)
         .then(resp =>{
             if(resp.status === 200) return resp.json();
+            else if(resp.status === 404) {
+                alert("Email already exist.");
+                history.push('/register');
+            }
             else alert("There has been some error.");
         })
-        .then()
+        .then(/*data =>{
+            console.log("This came from the backend",data);
+            sessionStorage.setItem("token", data.access_token);
+        }*/)
         .catch(error =>{
             console.error("Fatal error",error);
         })

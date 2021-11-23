@@ -6,6 +6,7 @@ from sqlalchemy.testing import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
 
+from carHub.backend.dao.users import UsersDAO
 from carHub.backend.handler.appointments import AppointmentsHandler
 from carHub.backend.handler.users import UserHandler
 
@@ -77,6 +78,8 @@ def signup_post():
     # db.session.add(new_user)
     # db.session.commit()
     email = request.json.get("email", None)
+    if UsersDAO().searchUserByEmail(email):
+        return jsonify(Error="User's email already exist."), 404
     # password = request.json.get("password", None)
     UserHandler().insertUserForm(request.json)
     access_token = create_access_token(identity=email)
