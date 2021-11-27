@@ -41,6 +41,7 @@ const theme = createTheme();
 
 export default function RegisterUser() {
     //const{store, actions} = useContext(Context);
+    const [checked, setChecked] = useState(false);
     const[email, setEmail] = useState("");
     const [password,setPassword] = useState("");
   const handleSubmit = event => {
@@ -64,6 +65,11 @@ export default function RegisterUser() {
         if(!validator.isEmail(email)){
              alert("Enter a valid Email.");
              return history.push('/register');
+        }
+
+        if(!checked){
+            alert("Agree to terms of service to proceed.");
+            return history.push('/register');
         }
         const opts = {
         method: 'POST',
@@ -154,8 +160,9 @@ export default function RegisterUser() {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <FormControlLabel
-                control={<Checkbox value='remember' color='primary' />}
+                control={<Checkbox value='remember' color='primary' onChange={(e) =>setChecked(e.target.value)} />}
                 label='I agree to the terms of service.'
+
               />
               <Button
                 type='submit'
