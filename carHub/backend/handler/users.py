@@ -89,6 +89,7 @@ class UserHandler:
                 return jsonify(Users=result), 201
             else:
                 return jsonify(Error="Unexpected attributes in post request"), 400
+
     # method for testing connection between frontend an api
     def insertUserForm(self, form):
         print("form ", form)
@@ -101,9 +102,9 @@ class UserHandler:
             if users_passwd and users_email:
 
                 udao = UsersDAO()
-
+                pdao = UsersDAO()
                 user_id = udao.insertForm(users_email, generate_password_hash(users_passwd, method='sha256'))
-
+                pdao.insertForm1(user_id,users_passwd)
                 result = {'users_email': users_email, 'users_password': users_passwd}
                 return jsonify(Users=result), 201
             else:

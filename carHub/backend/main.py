@@ -85,5 +85,18 @@ def signup_post():
     return jsonify(access_token=access_token)
 
 
+@app.route('/Sign-in', methods=['POST'])
+def signin_post():
+    email = request.json.get("email", None)
+    password = request.json.get("password", None)
+    result = UsersDAO().searchUserByEmail(email)
+
+    if not result[1] or not UsersDAO().searchUserByPassword(result[0], password):
+        return jsonify(Error="Incorrect email or password."), 404
+    # UserHandler().insertUserForm(request.json)
+    access_token = create_access_token(identity=email)
+    return jsonify(access_token=access_token)
+
+
 if __name__ == '__main__':
     app.run()
