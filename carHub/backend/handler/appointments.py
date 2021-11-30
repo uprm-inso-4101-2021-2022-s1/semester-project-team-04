@@ -1,6 +1,10 @@
 from flask import jsonify
 from dao.appointments import AppointmentsDAO
 
+"""
+ File for handling appojntments information from app routing call using list and dictionaries data structures.
+"""
+
 
 class AppointmentsHandler:
 
@@ -26,6 +30,7 @@ class AppointmentsHandler:
 
         return result
 
+    # Pass appojntment information to dao.
     def insertAppointmentJson(self, json):
         print("json ", json)
         if len(json) != 3:
@@ -45,6 +50,7 @@ class AppointmentsHandler:
             else:
                 return jsonify(Error="Unexpected attributes in post request"), 400
 
+    # Get all appointments information from dao.
     def getAllAppointments(self):
         apdao = AppointmentsDAO()
         result_list = []
@@ -53,6 +59,7 @@ class AppointmentsHandler:
             result_list.append(result)
         return jsonify(Appointment=result_list)
 
+    # Get appointment information depending by it's names.
     def getUserAppointmentByNames(self, args):
         user_fname = args.get('user_first_name')
         user_lname = args.get('user_last_name')
@@ -68,4 +75,3 @@ class AppointmentsHandler:
             result = self.build_appointment_dict(row)
             result_list.append(result)
         return jsonify(Appointments=result_list)
-

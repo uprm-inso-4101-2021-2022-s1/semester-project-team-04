@@ -1,6 +1,9 @@
 from carHub.backend.config.dbconfig import pg_config
 import psycopg2
-import urllib.parse as urlparse
+
+"""
+User's implementation to access the data stored in the database through SQL queries.
+"""
 
 
 class UsersDAO:
@@ -13,6 +16,7 @@ class UsersDAO:
 
         self.conn = psycopg2._connect(connection_url)
 
+    # Run query to get all users information from the database.
     def getAllUsers(self):
         cursor = self.conn.cursor()
         query = "select * from users natural inner join address natural inner join phone;"
@@ -22,6 +26,7 @@ class UsersDAO:
             result.append(row)
         return result
 
+    # Run query to get the user by it's id from database.
     def getUserById(self, user_id):
         cursor = self.conn.cursor()
         query = "select * from users natural inner join address natural inner join phone where user_id = %s;"
@@ -29,6 +34,7 @@ class UsersDAO:
         result = cursor.fetchone()
         return result
 
+    # Run query to store user's information to the database.
     def insert(self, user_first_name, user_last_name, user_uname, user_password, user_email):
         cursor = self.conn.cursor()
         query = "insert into users(user_first_name, user_last_name, user_uname, user_password, user_email) " \

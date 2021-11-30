@@ -1,6 +1,9 @@
 from config.dbconfig import pg_config
 import psycopg2
-import urllib.parse as urlparse
+
+"""
+Appointment implementation to access the data stored in the database through SQL queries.
+"""
 
 
 class AppointmentsDAO:
@@ -13,6 +16,7 @@ class AppointmentsDAO:
 
         self.conn = psycopg2._connect(connection_url)
 
+    # Run query to get all appointments information from the database.
     def getAllAppointments(self):
         cursor = self.conn.cursor()
         query = "select user_id, user_first_name, user_last_name, appointment_created, appointment_scheduled, appointment_cancelled  " \
@@ -23,6 +27,7 @@ class AppointmentsDAO:
             result.append(row)
         return result
 
+    # Run query to get the user appointment by it's names from database.
     def getUserByAppointmentbyNames(self, user_first_name, user_last_name):
         cursor = self.conn.cursor()
         query = "select user_id, user_first_name, user_last_name, appointment_created, appointment_scheduled, appointment_cancelled " \
@@ -31,6 +36,7 @@ class AppointmentsDAO:
         result = cursor.fetchone()
         return result
 
+    # Run query to store user's appointment  to the database.
     def insert(self, appointment_created, appointment_scheduled, appointment_cancelled, user_id):
         cursor = self.conn.cursor()
         query = "insert into appointments(appointment_created, appointment_scheduled, appointment_cancelled, user_id) " \

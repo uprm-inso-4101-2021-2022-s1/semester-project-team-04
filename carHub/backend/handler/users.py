@@ -1,9 +1,13 @@
 from flask import jsonify
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash
 
 from carHub.backend.dao.address import AddressDAO
 from carHub.backend.dao.users import UsersDAO
 from carHub.backend.dao.phone import PhoneDAO  # added phone dao
+
+"""
+ File for handling users information from app routing call using list and dictionaries data structures.
+"""
 
 
 class UserHandler:
@@ -48,6 +52,7 @@ class UserHandler:
 
         return result
 
+    # Pass user's information to dao.
     def insertUserJson(self, json):
         print("json ", json)
         if len(json) != 10:
@@ -90,7 +95,7 @@ class UserHandler:
             else:
                 return jsonify(Error="Unexpected attributes in post request"), 400
 
-    # method for testing connection between frontend an api
+    # method for testing connection between frontend an api.
     def insertUserForm(self, form):
         print("form ", form)
         if len(form) != 2:
@@ -104,12 +109,13 @@ class UserHandler:
                 udao = UsersDAO()
                 pdao = UsersDAO()
                 user_id = udao.insertForm(users_email, generate_password_hash(users_passwd, method='sha256'))
-                pdao.insertForm1(user_id,users_passwd)
+                pdao.insertForm1(user_id, users_passwd)
                 result = {'users_email': users_email, 'users_password': users_passwd}
                 return jsonify(Users=result), 201
             else:
                 return jsonify(Error="Unexpected attributes in post request"), 400
 
+    # Get all users information from dao.
     def getAllUsers(self):
         udao = UsersDAO()
         result_list = []
@@ -118,6 +124,7 @@ class UserHandler:
             result_list.append(result)
         return jsonify(Users=result_list)
 
+    # Get user information depending by it's id.
     def getUserById(self, user_id):
         udao = UsersDAO()
         row = udao.getUserById(user_id)
