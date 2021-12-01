@@ -58,71 +58,71 @@ class Home extends React.Component {
         <div className='wrapper'>
           <Card
             img='https://source.unsplash.com/featured/?cars'
-            title='Penis Car'
-            description='Car for your penis'
-            price="You can't afford it"
+            title='Car'
+            description='Worn tin but internals work.'
+            price="3,500.00"
           />
 
           <Card
             img='https://source.unsplash.com/featured/?cars'
-            title='Penis Car'
-            description='Car for your penis'
-            price='20.00'
+            title='Car'
+            description='Does not have air conditioning'
+            price='2,000.00'
           />
 
           <Card
             img='https://source.unsplash.com/featured/?cars'
-            title='Penis Car'
-            description='Car for your penis'
-            price='500.00'
-          />
-
-          <Card
-            img='https://source.unsplash.com/featured/?cars'
-            title='Penis Car'
-            description='Car for your penis'
-            price='1000.00'
-          />
-
-          <Card
-            img='https://source.unsplash.com/featured/?cars'
-            title='Penis Car'
-            description='Car for your penis'
+            title='Car'
+            description='Little mileage'
             price='50,000.00'
           />
 
           <Card
             img='https://source.unsplash.com/featured/?cars'
-            title='Penis Car'
-            description='Car for your penis'
-            price="You can't afford it"
+            title='Car'
+            description='Worn tin but internals work.'
+            price='7,500.00'
           />
 
           <Card
             img='https://source.unsplash.com/featured/?cars'
-            title='Penis Car'
-            description='Car for your penis'
-            price='20.00'
+            title='Car'
+            description='Does not have air conditioning'
+            price='50,000.00'
           />
 
           <Card
             img='https://source.unsplash.com/featured/?cars'
-            title='Penis Car'
-            description='Car for your penis'
-            price='500.00'
+            title='Car'
+            description='Little mileage'
+            price="15,000"
           />
 
           <Card
             img='https://source.unsplash.com/featured/?cars'
-            title='Penis Car'
-            description='Car for your penis'
-            price='1000.00'
+            title='Car'
+            description='Worn tin but internals work.'
+            price='20,000.00'
           />
 
           <Card
             img='https://source.unsplash.com/featured/?cars'
-            title='Penis Car'
-            description='Car for your penis'
+            title='Car'
+            description='Does not have air conditioning'
+            price='5,000.00'
+          />
+
+          <Card
+            img='https://source.unsplash.com/featured/?cars'
+            title='Car'
+            description='Worn tin but internals work.'
+            price='10,000.00'
+          />
+
+          <Card
+            img='https://source.unsplash.com/featured/?cars'
+            title='Car'
+            description='Little mileage'
             price='50,000.00'
           />
         </div>
