@@ -95,7 +95,7 @@ class UserHandler:
             else:
                 return jsonify(Error="Unexpected attributes in post request"), 400
 
-    # method for testing connection between frontend an api.
+    # Pass user's information to dao.
     def insertUserForm(self, form):
         print("form ", form)
         if len(form) != 2:

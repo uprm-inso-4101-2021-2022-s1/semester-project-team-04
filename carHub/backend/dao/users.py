@@ -44,7 +44,7 @@ class UsersDAO:
         self.conn.commit()
         return user_id
 
-    # method for testing connection between frontend an api
+    # Run query to insert user's information to the database.
     def insertForm(self, user_email, user_password):
         cursor = self.conn.cursor()
         query = "insert into users_test(user_email, user_password) " \
@@ -54,7 +54,7 @@ class UsersDAO:
         self.conn.commit()
         return user_id
 
-        # method for testing connection between frontend an api
+        # Run query to insert user's password to the database.
 
     def insertForm1(self, user_id, user_password1):
         cursor = self.conn.cursor()
@@ -65,7 +65,7 @@ class UsersDAO:
         self.conn.commit()
         return user_id
 
-    # method for testing connection between frontend an api
+    # Run query to search user by email registration from database.
     def searchUserByEmail(self, user_email):
         cursor = self.conn.cursor()
         query = "select user_id, user_email from users_test where user_email = %s;"
@@ -73,7 +73,7 @@ class UsersDAO:
         result = cursor.fetchone()
         return result
 
-    # method for testing connection between frontend an api
+    # Run query to search user by password registration from database.
     def searchUserByPassword(self, user_id, user_password1):
         cursor = self.conn.cursor()
         query = "select user_password1 from users_test_passwords where user_password1 = %s and  user_id = %s;"
