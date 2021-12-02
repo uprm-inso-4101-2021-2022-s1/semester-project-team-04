@@ -3,3 +3,23 @@
   font-family: sans-serif;
   font-style: bold;
 }
+
+.SearchBar {
+  width: 500px;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+@media screen and (max-width: 650px) {
+  .SearchBar {
+    width: 360px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .SearchBar {
+    display: none;
+  }
+}

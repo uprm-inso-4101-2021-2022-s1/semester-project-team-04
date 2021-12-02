@@ -5,6 +5,7 @@ import SignInSide from './views/SignInSide';
 import RegisterUser from './views/RegisterUser';
 import AboutUs from './views/About_Us';
 import history from './history';
+import Footer from './components/Footer';
 import './App.css';
 
 function App() {
@@ -15,8 +16,9 @@ function App() {
         <Route path='/Sign-in' exact component={SignInSide} />
         <Route path='/register' exact component={RegisterUser} />
         <Route path='/about-us' exact component={AboutUs} />
-        <Route path='/contact-us' exact component={Home} />
+        {/* <Route path='/contact-us' exact component={Home} /> */}
       </Switch>
+      <Footer />
     </Router>
   );
 }
