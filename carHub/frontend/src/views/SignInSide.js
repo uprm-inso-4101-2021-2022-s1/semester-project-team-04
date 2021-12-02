@@ -13,8 +13,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import history from '../history';
-import validator from "validator";
-import {useState} from "react";
+import validator from 'validator';
+import { useState } from 'react';
 
 function Copyright(props) {
   return (
@@ -36,9 +36,9 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignInSide() {
-    //const [checked, setChecked] = useState(false);
-    const[email, setEmail] = useState("");
-    const [password,setPassword] = useState("");
+  //const [checked, setChecked] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const handleSubmit = event => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -50,41 +50,38 @@ export default function SignInSide() {
   };
 
   const handleClick = () => {
+    if ((email === '' && password === '') || email === '' || password === '') {
+      alert('Enter Email and Password.');
+      return history.push('/Sign-in');
+    }
 
-        if((email === '' && password === '') || (email === '' || password === '')) {
-            alert("Enter Email and Password.");
-            return history.push('/Sign-in');
-        }
-
-        if(!validator.isEmail(email)){
-             alert("Enter a valid Email.");
-             return history.push('/Sign-in');
-        }
-        const opts = {
-        method: 'POST',
-        headers:{
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({"email":email,
-  "password":password})
+    if (!validator.isEmail(email)) {
+      alert('Enter a valid Email.');
+      return history.push('/Sign-in');
+    }
+    const opts = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email: email, password: password }),
     };
-    fetch('http://127.0.0.1:5000/Sign-in',opts)
-        .then(resp =>{
-            if(resp.status === 200) return resp.json();
-            else if(resp.status === 404) {
-                alert("Incorrect email or password.");
-                history.push('/Sign-in');
-            }
-            else alert("There has been some error.");
-        })
-        .then(/*data =>{
+    fetch('http://127.0.0.1:5000/Sign-in', opts)
+      .then(resp => {
+        if (resp.status === 200) return resp.json();
+        else if (resp.status === 404) {
+          alert('Incorrect email or password.');
+          history.push('/Sign-in');
+        } else alert('There has been some error.');
+      })
+      .then(/*data =>{
             console.log("This came from the backend",data);
             sessionStorage.setItem("token", data.access_token);
         }*/)
-        .catch(error =>{
-            console.error("Fatal error",error);
-        })
-    };
+      .catch(error => {
+        console.error('Fatal error', error);
+      });
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -134,7 +131,7 @@ export default function SignInSide() {
                 label='Email Address'
                 name='email'
                 autoComplete='email'
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={e => setEmail(e.target.value)}
                 autoFocus
               />
               <TextField
@@ -146,7 +143,7 @@ export default function SignInSide() {
                 type='password'
                 id='password'
                 autoComplete='current-password'
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={e => setPassword(e.target.value)}
               />
               <FormControlLabel
                 control={<Checkbox value='remember' color='primary' />}
@@ -157,19 +154,25 @@ export default function SignInSide() {
                 fullWidth
                 variant='contained'
                 sx={{ mt: 3, mb: 2 }}
-                onClick={() => {history.push('/');handleClick()}}>
+                onClick={() => {
+                  history.push('/');
+                  handleClick();
+                }}>
                 Sign In
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link underline='hover' href='#' variant='body2'>
+                  <Link
+                    underline='hover'
+                    variant='body2'
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => history.push('/')}>
                     Forgot password?
                   </Link>
                   <Link
                     underline='hover'
-                    href='#'
                     variant='body2'
-                    style={{ marginLeft: '30%' }}
+                    style={{ marginLeft: '30%', cursor: 'pointer' }}
                     onClick={() => history.push('/register')}>
                     Create Account
                   </Link>

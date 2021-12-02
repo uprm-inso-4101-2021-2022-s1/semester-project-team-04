@@ -259,20 +259,18 @@ function SearchBar() {
   };
 
   return (
-    <div className='App'>
-      <header className='App-header'>
-        <div style={{ width: 500 }}>
-          <ReactSearchAutocomplete
-            items={items}
-            onSearch={handleOnSearch}
-            onHover={handleOnHover}
-            onSelect={handleOnSelect}
-            onFocus={handleOnFocus}
-            autoFocus
-            placeholder={'Search by Car Brand'}
-          />
-        </div>
-      </header>
+    <div className='SearchBar'>
+      <div style={{ width: '100%' }}>
+        <ReactSearchAutocomplete
+          items={items}
+          onSearch={handleOnSearch}
+          onHover={handleOnHover}
+          onSelect={handleOnSelect}
+          onFocus={handleOnFocus}
+          autoFocus
+          placeholder={'Search by Vin Number'}
+        />
+      </div>
     </div>
   );
 }

@@ -28,7 +28,7 @@ function Copyright(props) {
       <Link
         underline='hover'
         color='rgb(10, 96, 235)'
-        href='http://localhost:3000/'>
+        onClick={() => history.push('/')}>
         CarHub
       </Link>{' '}
       {new Date().getFullYear()}
